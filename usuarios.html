@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Perfiles y Roles • BLESSED (ADS-433)</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- FILTRO DE SEGURIDAD Y CONTROL DE ROLES (ROUTE GUARD ADS-433) -->
+  <script>
+    (function () {
+      try {
+        const rawUser = localStorage.getItem('blessed_user');
+        const user = rawUser ? JSON.parse(rawUser) : null;
+        if (!user || !user.id_usuario || !user.email) {
+          sessionStorage.setItem('blessed_target_url', 'usuarios.html');
+          sessionStorage.setItem('blessed_security_msg', 'Intento de acceso directo no autorizado a "Gestión de Perfiles". Debe iniciar sesión como Administrador.');
+          window.location.replace('login.html?security_block=unauthorized&from=usuarios.html');
+        } else if (user.rol_codigo !== 'admin') {
+          sessionStorage.setItem('blessed_security_alert', 'Acceso Denegado: Su cuenta tiene rol "' + (user.rol_nombre || user.rol_codigo) + '". El módulo de Gestión de Perfiles es exclusivo para Administradores.');
+          window.location.replace('dashboard.html?security_block=forbidden');
+        }
+      } catch (e) {
+        window.location.replace('login.html?security_block=unauthorized');
+      }
+    })();
+  </script>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Overlay móvil para sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- 1. SIDEBAR LATERAL NAVEGABLE -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo-container" style="margin-bottom: 0;">
+          <div class="brand-icon-box" style="width: 38px; height: 38px; font-size: 1.15rem;">B</div>
+          <span class="brand-title" style="font-size: 1.35rem; color: #ffffff;">BLESS<span>ED</span></span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Módulos del Sistema</div>
+
+        <a href="dashboard.html" class="nav-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Dashboard (Inicio)
+        </a>
+
+        <a href="crud.html" class="nav-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          Inventario de Ropa (CRUD)
+        </a>
+
+        <a href="usuarios.html" class="nav-link active">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          Gestión de Perfiles
+        </a>
+
+        <div class="nav-section-title">Vistas de Acceso Público</div>
+
+        <a href="login.html" class="nav-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+          </svg>
+          Inicio de Sesión
+        </a>
+
+        <a href="registro.html" class="nav-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+          </svg>
+          Registro Público
+        </a>
+
+        <div class="nav-section-title">Documentación Oficial</div>
+
+        <a href="sistema_diseno.html" class="nav-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+          </svg>
+          Sistema de Diseño HTML
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-badge">
+          <div class="user-avatar-small" id="sidebarAvatar">GP</div>
+          <div class="user-info-text">
+            <div class="user-name-text" id="sidebarUserName">Genderson Piñango</div>
+            <div class="user-role-text" id="sidebarUserRole">Administrador del Sistema</div>
+          </div>
+        </div>
+        <a href="login.html" onclick="logoutUser(event);" title="Cerrar Sesión Activa"
+          style="color: #94a3b8; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- 2. CONTENIDO PRINCIPAL: GESTIÓN DE PERFILES -->
+    <div class="app-main">
+
+      <!-- Navbar Superior -->
+      <header class="app-navbar">
+        <div class="navbar-left">
+          <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <h2 class="navbar-page-title">
+            <span>Gestión de Perfiles</span>
+            <span class="navbar-title-extra">• BLESSED</span>
+          </h2>
+        </div>
+
+        <div class="navbar-right">
+          <button class="btn btn-primary btn-sm navbar-btn-action" onclick="openCreateUserModal()"
+            title="Registrar nuevo perfil">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            <span class="navbar-btn-text">Nuevo Perfil</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Cuerpo de Gestión de Perfiles -->
+      <main class="app-content">
+
+        <!-- Barra de Herramientas y Filtros por Rol -->
+        <div class="crud-toolbar">
+
+          <div class="crud-search-filters">
+            <!-- Buscador Rápido -->
+            <div class="crud-search-box input-wrapper">
+              <span class="input-icon">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </span>
+              <input type="text" id="userSearchInput" class="form-control"
+                placeholder="Buscar por nombre o correo (ej. genderson)...">
+            </div>
+
+            <!-- Filtro Desplegable por Rol -->
+            <div class="crud-category-wrapper">
+              <select id="userRoleFilter" class="form-control" style="cursor: pointer;">
+                <option value="todos">Todos los Roles</option>
+                <option value="admin">Administrador del Sistema (admin)</option>
+                <option value="cliente-comprador">Cliente Comprador (cliente-comprador)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Selector de Vista: Cards vs Tabla -->
+          <div class="crud-toolbar-actions">
+            <div class="view-toggle-group">
+              <button class="view-toggle-btn active" id="viewUserCardsBtn" title="Vista Tarjetas de Perfil">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+                Perfiles
+              </button>
+              <button class="view-toggle-btn" id="viewUserTableBtn" title="Vista Tabla de Usuarios">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+                Tabla
+              </button>
+            </div>
+
+            <button class="btn btn-primary" onclick="openCreateUserModal()">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>Nuevo Usuario</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- ==============================================================
+             ESTADO 1: CARGANDO (LOADING STATE)
+             ============================================================== -->
+        <div id="usersLoadingState" style="text-align: center; padding: 4rem 1rem;">
+          <div class="spinner-brand" style="margin: 0 auto 1.25rem;"></div>
+          <h3 style="font-size: 1.15rem; color: var(--text-main); margin-bottom: 0.35rem;">Consultando Perfiles en Base
+            de Datos...</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Sincronizando cuentas con roles admin y
+            cliente-comprador vía API REST.</p>
+        </div>
+
+        <!-- ==============================================================
+             ESTADO 3: ERROR STATE
+             ============================================================== -->
+        <div id="usersErrorState"
+          style="display: none; text-align: center; padding: 3rem 1.5rem; background: var(--bg-surface); border: 1px solid rgba(220, 38, 38, 0.2); border-radius: var(--radius-lg); margin-bottom: 2rem;">
+          <div
+            style="width: 50px; height: 50px; border-radius: 50%; background: rgba(220, 38, 38, 0.12); color: var(--color-danger); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+            <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h3 style="color: var(--color-danger); margin-bottom: 0.5rem;" id="usersErrorMessage">Error de Conexión</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 480px; margin: 0 auto 1.25rem;"
+            id="usersErrorDetails">No se pudo cargar la lista de perfiles desde el backend.</p>
+          <button class="btn btn-secondary btn-sm" onclick="fetchUsuariosFromApi()">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            Reintentar Conexión
+          </button>
+        </div>
+
+        <!-- ==============================================================
+             OPCIÓN 1: VISTA EN CARDS DE PERFILES
+             ============================================================== -->
+        <div class="clothing-grid" id="userCardsView" style="display: none;">
+          <!-- Inyectado dinámicamente desde script.js -->
+        </div>
+
+        <!-- ==============================================================
+             OPCIÓN 2: VISTA EN TABLA DE USUARIOS
+             ============================================================== -->
+        <div class="table-responsive" id="userTableView" style="display: none;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuario / Nombre</th>
+                <th>Correo Electrónico</th>
+                <th>Rol Asignado</th>
+                <th>Teléfono</th>
+                <th>Estado</th>
+                <th style="text-align: right;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              <!-- Inyectado dinámicamente desde script.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Paginador -->
+        <div class="pagination-wrapper" id="usersPagination">
+          <div class="pagination-info" id="usersPaginationInfo">Cargando usuarios...</div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled>&laquo;</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn" disabled>&raquo;</button>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- ==============================================================
+       MODAL: CREAR / EDITAR PERFIL DE USUARIO
+       ============================================================== -->
+  <div class="modal-overlay" id="modalUserUnified">
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3 id="userModalTitle">
+          <svg width="22" height="22" fill="none" stroke="var(--brand-primary)" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          Registrar Nuevo Perfil
+        </h3>
+        <button class="modal-close" data-close-modal aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <form id="userForm">
+        <input type="hidden" id="userIdInput" value="">
+
+        <div class="modal-body">
+          <div id="userModalError" class="alert alert-danger"
+            style="display: none; margin-bottom: 1rem; padding: 0.65rem 1rem; font-size: 0.85rem; border-radius: var(--radius-md); background: rgba(220, 38, 38, 0.1); color: var(--color-danger); border: 1px solid rgba(220, 38, 38, 0.2);">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userNameInput">Nombre Completo <span class="required">*</span></label>
+            <input type="text" id="userNameInput" class="form-control" placeholder="Ej. Genderson Piñango" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userEmailInput">Correo Electrónico <span class="required">*</span></label>
+            <input type="email" id="userEmailInput" class="form-control" placeholder="genderson09@gmail.com" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;" class="form-row-2col">
+            <div class="form-group">
+              <label class="form-label" for="userRoleInput">Rol Asignado <span class="required">*</span></label>
+              <select id="userRoleInput" class="form-control" required>
+                <option value="1">Administrador (admin)</option>
+                <option value="2">Cliente Comprador (cliente-comprador)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="userStatusInput">Estado de Cuenta</label>
+              <select id="userStatusInput" class="form-control">
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;" class="form-row-2col">
+            <div class="form-group">
+              <label class="form-label" for="userPhoneInput">Teléfono</label>
+              <input type="text" id="userPhoneInput" class="form-control" placeholder="+58 412-0000000">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="userPassInput" id="userPassLabel">Contraseña <span
+                  class="required">*</span></label>
+              <input type="password" id="userPassInput" class="form-control" placeholder="••••••••••••">
+              <small style="color: var(--text-muted); font-size: 0.75rem;" id="userPassHelp">Al editar, deje en blanco
+                para mantener la contraseña actual.</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="btnSubmitUser">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span id="btnSubmitUserText">Guardar Perfil</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ==============================================================
+       MODAL DE CONFIRMACIÓN DE ELIMINACIÓN DE PERFIL
+       ============================================================== -->
+  <div class="modal-overlay" id="modalConfirmDeleteUser">
+    <div class="modal-box" style="text-align: center; max-width: 440px;">
+      <div class="modal-body" style="padding-top: 2rem;">
+        <div class="modal-status-icon warning">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+
+        <h3 style="margin-bottom: 0.5rem; justify-content: center;">¿Eliminar este perfil?</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">
+          Se dará de baja al usuario <span id="deleteUserNameTarget"
+            style="font-weight: 700; color: var(--text-main);"></span>. El Administrador Principal (Genderson) no puede
+          ser eliminado.
+        </p>
+
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary btn-block" data-close-modal>Cancelar</button>
+          <button class="btn btn-danger btn-block" id="btnConfirmDeleteUser" onclick="confirmDeleteUserAction()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+            <span id="btnConfirmDeleteUserText">Sí, Eliminar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

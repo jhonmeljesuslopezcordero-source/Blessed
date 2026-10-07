@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Diseño UI/UX • BLESSED (ADS-433)</title>
+  <meta name="description" content="Living Style Guide y especificación técnica del Sistema de Diseño para BLESSED - IUJO.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Barra de Navegación Rápida de la Guía -->
+  <header style="background-color: var(--brand-dark); border-bottom: 2px solid var(--brand-primary); padding: 0.9rem 1.75rem; color: #ffffff;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <div class="brand-icon-box" style="width: 36px; height: 36px; font-size: 1.1rem;">B</div>
+        <div>
+          <span style="font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;">BLESSED <span style="color: var(--brand-primary);">UI/UX</span></span>
+          <span class="badge badge-brand" style="margin-left: 0.5rem; font-size: 0.65rem;">ADS-433 IUJO</span>
+        </div>
+      </div>
+      <nav style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="login.html" class="btn btn-secondary btn-sm" style="color: #ffffff; border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05);">Login</a>
+        <a href="registro.html" class="btn btn-secondary btn-sm" style="color: #ffffff; border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05);">Registro</a>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm" style="color: #ffffff; border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05);">Dashboard</a>
+        <a href="crud.html" class="btn btn-primary btn-sm">Módulo CRUD</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1.25rem;">
+    
+    <!-- Hero Banner del Sistema de Diseño -->
+    <div class="docs-hero">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="badge badge-dark" style="margin-bottom: 0.75rem; border: 1px solid rgba(255,255,255,0.2);">Documento Técnico Oficial • Sección 2 (10%)</span>
+          <h1>Sistema de Diseño UI/UX: "Estilos a tu Medida"</h1>
+          <p>
+            Especificación técnica de la identidad tipográfica, tokens cromáticos oficiales, catálogo interactivo de botones en 4 estados, controles de formulario validados y sistema reactivo de modales y alertas.
+          </p>
+        </div>
+        <div style="text-align: right; background: rgba(0,0,0,0.3); padding: 1rem 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1);">
+          <div style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase;">Facilitador</div>
+          <div style="font-weight: 700; color: #ffffff;">Prof. Eduardo Nieves</div>
+          <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.35rem;">Sistema de Ropa:</div>
+          <div style="font-weight: 800; color: #ffffff; font-family: var(--font-display);">BLESSED</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 1: IDENTIDAD TIPOGRÁFICA -->
+    <section class="docs-section">
+      <h2 class="docs-section-title">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        1. Identidad Tipográfica Oficial de Marca
+      </h2>
+      <p style="margin-bottom: 1.5rem;">
+        Títulos en <strong>Montserrat</strong> (Display Bold geométrica, 700/800, espaciado -0.02em) y textos en <strong>Inter</strong> (Regular 400 / SemiBold 600) para máxima legibilidad.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; background: var(--bg-surface-alt); padding: 1.5rem; border-radius: var(--radius-md);">
+        <div>
+          <h1 style="margin-bottom: 0.5rem;">H1 - Encabezado Principal 32px</h1>
+          <h2 style="margin-bottom: 0.5rem;">H2 - Sección Secundaria 24px</h2>
+          <h3 style="margin-bottom: 0.5rem;">H3 - Subtítulo de Módulo 20px</h3>
+          <h4 style="margin-bottom: 0.5rem;">H4 - Tarjeta y Título Menor 18px</h4>
+        </div>
+        <div>
+          <p style="margin-bottom: 0.75rem; font-size: 1rem; color: var(--text-main);">
+            <strong>Párrafo Regular (400):</strong> BLESSED es un software de optimización para la compra, control de stock y venta de ropa urbana de diseño contemporáneo.
+          </p>
+          <p style="margin-bottom: 0.75rem; font-size: 0.95rem;">
+            <strong>Texto Secundario (500):</strong> Código SKU, categorías de prendas, tallaje estándar y costos unitarios organizados bajo una arquitectura limpia.
+          </p>
+          <span style="font-family: monospace; font-size: 0.85rem; background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 4px;">
+            letter-spacing: -0.02em; font-family: 'Montserrat' / 'Inter';
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: PALETA DE COLORES OFICIAL (SWATCHES) -->
+    <section class="docs-section">
+      <h2 class="docs-section-title">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+        2. Paleta Oficial de Colores de Marca (Brand Colors)
+      </h2>
+      <p style="margin-bottom: 1.25rem;">
+        Haz click en cualquier muestra para copiar su código HEX institucional al portapapeles.
+      </p>
+
+      <div class="palette-grid">
+        <!-- 1. Obsidian Black -->
+        <div class="color-swatch-card" data-hex="#0b0a08">
+          <div class="color-swatch-box" style="background-color: #0b0a08;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Obsidian Black</div>
+            <div class="color-swatch-hex">#0b0a08</div>
+            <div class="color-swatch-var">--brand-dark</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Fondos oscuros, sidebar y texto</div>
+          </div>
+        </div>
+
+        <!-- 2. Ruby Crimson -->
+        <div class="color-swatch-card" data-hex="#be0b11">
+          <div class="color-swatch-box" style="background-color: #be0b11;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Ruby Crimson</div>
+            <div class="color-swatch-hex">#be0b11</div>
+            <div class="color-swatch-var">--brand-primary</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Acción principal y destacados</div>
+          </div>
+        </div>
+
+        <!-- 3. Deep Crimson -->
+        <div class="color-swatch-card" data-hex="#9b0c0f">
+          <div class="color-swatch-box" style="background-color: #9b0c0f;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Deep Crimson</div>
+            <div class="color-swatch-hex">#9b0c0f</div>
+            <div class="color-swatch-var">--brand-hover</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Estados :hover y cabeceras</div>
+          </div>
+        </div>
+
+        <!-- 4. Dark Wine -->
+        <div class="color-swatch-card" data-hex="#790d0d">
+          <div class="color-swatch-box" style="background-color: #790d0d;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Dark Wine</div>
+            <div class="color-swatch-hex">#790d0d</div>
+            <div class="color-swatch-var">--brand-wine</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Bordes activos y líneas</div>
+          </div>
+        </div>
+
+        <!-- 5. Deep Maroon -->
+        <div class="color-swatch-card" data-hex="#570e0b">
+          <div class="color-swatch-box" style="background-color: #570e0b;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Deep Maroon</div>
+            <div class="color-swatch-hex">#570e0b</div>
+            <div class="color-swatch-var">--brand-maroon</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Gradientes hero y banners</div>
+          </div>
+        </div>
+
+        <!-- 6. Secundario -->
+        <div class="color-swatch-card" data-hex="#475569">
+          <div class="color-swatch-box" style="background-color: #475569;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Slate Gray</div>
+            <div class="color-swatch-hex">#475569</div>
+            <div class="color-swatch-var">--color-secondary</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Botones outline y cancelaciones</div>
+          </div>
+        </div>
+
+        <!-- 7. Peligro -->
+        <div class="color-swatch-card" data-hex="#991b1b">
+          <div class="color-swatch-box" style="background-color: #991b1b;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Danger Red</div>
+            <div class="color-swatch-hex">#991b1b</div>
+            <div class="color-swatch-var">--color-danger</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Bajas y eliminación irreversible</div>
+          </div>
+        </div>
+
+        <!-- 8. Éxito -->
+        <div class="color-swatch-card" data-hex="#16a34a">
+          <div class="color-swatch-box" style="background-color: #16a34a;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Success Green</div>
+            <div class="color-swatch-hex">#16a34a</div>
+            <div class="color-swatch-var">--color-success</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Confirmaciones y altas con éxito</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: CATÁLOGO DE BOTONES (4 ESTADOS OBLIGATORIOS) -->
+    <section class="docs-section">
+      <h2 class="docs-section-title">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+        3. Catálogo de Botones (Variantes y 4 Estados Interactivos)
+      </h2>
+      <p style="margin-bottom: 1.5rem;">
+        Cada botón implementa rigurosamente los 4 estados: <strong>Normal</strong>, <strong>:hover</strong> (elevación y tono acentuado), <strong>:focus</strong> (halo perimetral con pulsación) y <strong>disabled</strong> (50% de opacidad y bloqueo de puntero).
+      </p>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Variante</th>
+              <th>Estado Normal</th>
+              <th>Estado :hover (Pasa el cursor)</th>
+              <th>Estado :focus (Haz clic o Tab)</th>
+              <th>Estado disabled (50% Opacidad)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Primario</strong> (#be0b11)</td>
+              <td><button class="btn btn-primary btn-sm">Guardar Prenda</button></td>
+              <td><button class="btn btn-primary btn-sm" style="background-color: var(--brand-hover);">Hover Visual</button></td>
+              <td><button class="btn btn-primary btn-sm" style="box-shadow: 0 0 0 4px rgba(190, 11, 17, 0.4);">Focus Visual</button></td>
+              <td><button class="btn btn-primary btn-sm" disabled>Deshabilitado</button></td>
+            </tr>
+            <tr>
+              <td><strong>Secundario / Outline</strong> (#475569)</td>
+              <td><button class="btn btn-secondary btn-sm">Cancelar / Volver</button></td>
+              <td><button class="btn btn-secondary btn-sm" style="background-color: var(--bg-surface-alt);">Hover Visual</button></td>
+              <td><button class="btn btn-secondary btn-sm" style="box-shadow: 0 0 0 4px rgba(71, 85, 105, 0.25);">Focus Visual</button></td>
+              <td><button class="btn btn-secondary btn-sm" disabled>Deshabilitado</button></td>
+            </tr>
+            <tr>
+              <td><strong>Peligro</strong> (#991b1b)</td>
+              <td><button class="btn btn-danger btn-sm">Eliminar Registro</button></td>
+              <td><button class="btn btn-danger btn-sm" style="background-color: var(--color-danger-hover);">Hover Visual</button></td>
+              <td><button class="btn btn-danger btn-sm" style="box-shadow: 0 0 0 4px rgba(153, 27, 27, 0.35);">Focus Visual</button></td>
+              <td><button class="btn btn-danger btn-sm" disabled>Deshabilitado</button></td>
+            </tr>
+            <tr>
+              <td><strong>Éxito</strong> (#16a34a)</td>
+              <td><button class="btn btn-success btn-sm">Aprobar Compra</button></td>
+              <td><button class="btn btn-success btn-sm" style="background-color: var(--color-success-hover);">Hover Visual</button></td>
+              <td><button class="btn btn-success btn-sm" style="box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.35);">Focus Visual</button></td>
+              <td><button class="btn btn-success btn-sm" disabled>Deshabilitado</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: FORMULARIOS Y CONTROLES CON VALIDACIÓN -->
+    <section class="docs-section">
+      <h2 class="docs-section-title">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        4. Controles de Formulario y Estados de Validación
+      </h2>
+      <p style="margin-bottom: 1.5rem;">
+        Demostración de estados visuales: <strong>Normal</strong>, <strong>Focus</strong> con halo de resplandor rojizo, <strong>Error</strong> con alerta explícita y <strong>Disabled</strong>.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        
+        <!-- Estado Normal -->
+        <div style="background: var(--bg-surface-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+          <span class="badge badge-brand" style="margin-bottom: 0.75rem;">Estado 1: Normal</span>
+          <div class="form-group">
+            <label class="form-label">Nombre de Prenda <span class="required">*</span></label>
+            <input type="text" class="form-control" placeholder="Ej. Hoodie Oversize Blessed 2026">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Categoría</label>
+            <select class="form-control">
+              <option>Hoodies & Sudaderas</option>
+              <option>Camisetas Oversize</option>
+              <option>Pantalones Cargo</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Estado Focus Activo -->
+        <div style="background: var(--bg-surface-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+          <span class="badge badge-dark" style="margin-bottom: 0.75rem;">Estado 2: Focus (Activo)</span>
+          <div class="form-group">
+            <label class="form-label">Código SKU / Referencia</label>
+            <input type="text" class="form-control" style="border-color: var(--brand-primary); box-shadow: 0 0 0 4px var(--border-focus);" value="BLS-HD-001">
+            <span class="form-feedback" style="color: var(--brand-primary); font-size: 0.8rem;">Borde rojo institucional + halo translúcido activo</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Precio de Venta ($ USD)</label>
+            <input type="number" class="form-control" style="border-color: var(--brand-primary); box-shadow: 0 0 0 4px var(--border-focus);" value="35.00">
+          </div>
+        </div>
+
+        <!-- Estado Error -->
+        <div style="background: var(--bg-surface-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+          <span class="badge badge-danger" style="margin-bottom: 0.75rem;">Estado 3: Error de Validación</span>
+          <div class="form-group has-error">
+            <label class="form-label">Correo de Proveedor <span class="required">*</span></label>
+            <input type="email" class="form-control is-invalid" value="correo-invalido@">
+            <div class="form-feedback error-text">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+              El formato de correo no es válido.
+            </div>
+          </div>
+          <div class="form-group has-error">
+            <label class="form-label">Stock Inicial</label>
+            <input type="text" class="form-control is-invalid" value="-5">
+            <div class="form-feedback error-text">El valor debe ser un entero positivo.</div>
+          </div>
+        </div>
+
+        <!-- Estado Disabled -->
+        <div style="background: var(--bg-surface-alt); padding: 1.25rem; border-radius: var(--radius-md);">
+          <span class="badge" style="background: #94a3b8; color: #ffffff; margin-bottom: 0.75rem;">Estado 4: Disabled</span>
+          <div class="form-group">
+            <label class="form-label">ID Sistema (Autogenerado)</label>
+            <input type="text" class="form-control" value="SYS-BLS-88219" disabled>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fecha de Auditoría</label>
+            <input type="text" class="form-control" value="07/10/2026 - Bloqueado" disabled>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: ICONOGRAFÍA VECTORIAL REQUERIDA -->
+    <section class="docs-section">
+      <h2 class="docs-section-title">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        5. Iconografía Vectorial del Software
+      </h2>
+      <p style="margin-bottom: 1.25rem;">
+        Iconos requeridos en la Figura 5 de la guía: <strong>+ Nuevo</strong>, <strong>Editar</strong>, <strong>Eliminar</strong>, <strong>Buscar</strong> y <strong>Filtro</strong>.
+      </p>
+
+      <div style="display: flex; gap: 1.25rem; flex-wrap: wrap;">
+        <!-- Nuevo -->
+        <div style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-surface-alt); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <svg width="20" height="20" fill="none" stroke="var(--brand-primary)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+          <span style="font-weight: 600; font-size: 0.9rem;">+ Nuevo</span>
+        </div>
+        <!-- Editar -->
+        <div style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-surface-alt); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <svg width="20" height="20" fill="none" stroke="#2563eb" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          <span style="font-weight: 600; font-size: 0.9rem;">Editar</span>
+        </div>
+        <!-- Eliminar -->
+        <div style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-surface-alt); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <svg width="20" height="20" fill="none" stroke="var(--color-danger)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          <span style="font-weight: 600; font-size: 0.9rem;">Eliminar</span>
+        </div>
+        <!-- Buscar -->
+        <div style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-surface-alt); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <svg width="20" height="20" fill="none" stroke="var(--text-muted)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <span style="font-weight: 600; font-size: 0.9rem;">Buscar</span>
+        </div>
+        <!-- Filtro -->
+        <div style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-surface-alt); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <svg width="20" height="20" fill="none" stroke="var(--text-muted)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+          <span style="font-weight: 600; font-size: 0.9rem;">Filtro</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 6: DISPARADORES EN VIVO DE MODALES Y ALERTAS TOAST -->
+    <section class="docs-section">
+      <h2 class="docs-section-title">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        6. Sistema Interactivo de Modales y Alerta Toast Temporizada
+      </h2>
+      <p style="margin-bottom: 1.5rem;">
+        Prueba los 4 comportamientos obligatorios exigidos en la Sección 6 de la guía oficial.
+      </p>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <!-- Botón Éxito -->
+        <button class="btn btn-success" onclick="openModal('modalDemoSuccess')">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          1. Ver Modal de Éxito
+        </button>
+
+        <!-- Botón Error -->
+        <button class="btn btn-danger" onclick="openModal('modalDemoError')">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          2. Ver Modal de Error
+        </button>
+
+        <!-- Botón Confirmación -->
+        <button class="btn btn-secondary" onclick="openModal('modalDemoConfirm')">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          3. Modal Confirmación de Baja
+        </button>
+
+        <!-- Botón Toast -->
+        <button class="btn btn-primary" id="triggerToastBtn">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          4. Disparar Toast con Temporizador (4s)
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODALES EN VIVO ==================== -->
+
+  <!-- 1. MODAL ÉXITO -->
+  <div class="modal-overlay" id="modalDemoSuccess">
+    <div class="modal-box" style="text-align: center;">
+      <div class="modal-body" style="padding-top: 2rem;">
+        <div class="modal-status-icon success">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3 style="margin-bottom: 0.5rem; justify-content: center;">¡Registro Exitoso!</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          Los datos de la prenda fueron guardados correctamente en la base de stock de BLESSED.
+        </p>
+        <button class="btn btn-success btn-block" data-close-modal>Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MODAL ERROR -->
+  <div class="modal-overlay" id="modalDemoError">
+    <div class="modal-box" style="text-align: center;">
+      <div class="modal-body" style="padding-top: 2rem;">
+        <div class="modal-status-icon error">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        </div>
+        <h3 style="margin-bottom: 0.5rem; color: var(--brand-primary); justify-content: center;">Error al Procesar Datos</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          Verifique campos obligatorios o duplicidad de SKU. Los campos con formato incorrecto permanecen resaltados para corregir.
+        </p>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary btn-block" data-close-modal>Cerrar</button>
+          <button class="btn btn-danger btn-block" data-close-modal>Reintentar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. MODAL CONFIRMACIÓN DE BAJA -->
+  <div class="modal-overlay" id="modalDemoConfirm">
+    <div class="modal-box" style="text-align: center;">
+      <div class="modal-body" style="padding-top: 2rem;">
+        <div class="modal-status-icon warning">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        </div>
+        <h3 style="margin-bottom: 0.5rem; justify-content: center;">¿Está seguro de eliminar este registro?</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          Esta acción no se puede deshacer (Heurística de Nielsen para prevención de pérdidas accidentales de datos).
+        </p>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary btn-block" data-close-modal>Cancelar</button>
+          <button class="btn btn-danger btn-block" onclick="closeModal('modalDemoConfirm'); showToast('Prenda Dada de Baja', 'El registro fue retirado del stock.', 4, 'error');">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

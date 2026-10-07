@@ -1,0 +1,14 @@
+# Entornos y temporales
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# IDEs
+.vscode/
+.idea/
+.agents/
+.gemini/
+
+# Archivos de prueba temporales
+api/test_login.php

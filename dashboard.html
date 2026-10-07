@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Principal • BLESSED (Control de Ropa)</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- FILTRO DE SEGURIDAD INMEDIATO (ROUTE GUARD ADS-433) -->
+  <script>
+    (function() {
+      try {
+        const rawUser = localStorage.getItem('blessed_user');
+        const user = rawUser ? JSON.parse(rawUser) : null;
+        if (!user || !user.id_usuario || !user.email) {
+          sessionStorage.setItem('blessed_target_url', 'dashboard.html');
+          sessionStorage.setItem('blessed_security_msg', 'Intento de acceso directo no autorizado a "Dashboard". Debe iniciar sesión.');
+          window.location.replace('login.html?security_block=unauthorized&from=dashboard.html');
+        }
+      } catch (e) {
+        window.location.replace('login.html?security_block=unauthorized');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Overlay para cerrar sidebar en móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- 1. SIDEBAR LATERAL OBLIGATORIO -->
+    <aside class="app-sidebar" id="appSidebar">
+      
+      <!-- Cabecera del Sidebar con Logo -->
+      <div class="sidebar-header">
+        <div class="brand-logo-container" style="margin-bottom: 0;">
+          <div class="brand-icon-box" style="width: 38px; height: 38px; font-size: 1.15rem;">B</div>
+          <span class="brand-title" style="font-size: 1.35rem; color: #ffffff;">BLESS<span>ED</span></span>
+        </div>
+      </div>
+
+      <!-- Menú de Enlaces de Navegación -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Módulos del Sistema</div>
+        
+        <a href="dashboard.html" class="nav-link active">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Dashboard (Inicio)
+        </a>
+
+        <a href="crud.html" class="nav-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          Inventario de Ropa (CRUD)
+        </a>
+
+        <a href="usuarios.html" class="nav-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          Gestión de Perfiles
+        </a>
+
+        <div class="nav-section-title">Vistas de Acceso Público</div>
+
+        <a href="login.html" class="nav-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+          Inicio de Sesión
+        </a>
+
+        <a href="registro.html" class="nav-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+          Registro Público
+        </a>
+
+        <div class="nav-section-title">Documentación Oficial</div>
+
+        <a href="sistema_diseno.html" class="nav-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+          Sistema de Diseño HTML
+        </a>
+      </nav>
+
+      <!-- Pie del Sidebar con Usuario Activo -->
+      <div class="sidebar-footer">
+        <div class="sidebar-user-badge">
+          <div class="user-avatar-small" id="sidebarAvatar">GP</div>
+          <div class="user-info-text">
+            <div class="user-name-text" id="sidebarUserName">Genderson Piñango</div>
+            <div class="user-role-text" id="sidebarUserRole">Administrador del Sistema</div>
+          </div>
+        </div>
+        <a href="login.html" onclick="logoutUser(event);" title="Cerrar Sesión Activa" style="color: #94a3b8; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        </a>
+      </div>
+
+    </aside>
+
+    <!-- 2. CONTENIDO PRINCIPAL -->
+    <div class="app-main">
+      
+      <!-- Barra Superior (Navbar) -->
+      <header class="app-navbar">
+        <div class="navbar-left">
+          <!-- Botón de Menú Hamburguesa visible en móviles -->
+          <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú de navegación">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+          <h2 class="navbar-page-title">
+            <span>Panel de Control</span>
+            <span class="navbar-title-extra">• BLESSED</span>
+          </h2>
+        </div>
+
+        <div class="navbar-right">
+          <!-- Identidad y botón Salir -->
+          <div class="navbar-user-actions">
+            <span class="badge badge-brand navbar-badge">IUJO ADS-433</span>
+            <a href="login.html" class="btn btn-secondary btn-sm navbar-logout-btn" title="Cerrar Sesión">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+              <span class="navbar-logout-text">Cerrar Sesión</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Cuerpo del Dashboard -->
+      <main class="app-content">
+        
+        <!-- Saludo y Acceso Rápido con espaciado responsive optimizado -->
+        <div class="dashboard-header-banner">
+          <div class="header-info">
+            <h1>Panel de Rendimiento Comercial</h1>
+            <p>Métricas operativas del negocio de compra y venta de ropa auditado en Fase I.</p>
+          </div>
+          <div class="header-actions">
+            <a href="crud.html" class="btn btn-primary">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              Gestionar Inventario
+            </a>
+          </div>
+        </div>
+
+        <!-- 4 TARJETAS KPI OBLIGATORIAS (VINCULADAS A LA BASE DE DATOS EN TIEMPO REAL) -->
+        <div class="kpi-grid">
+          
+          <!-- KPI 1: Prendas en Stock -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Stock Total de Ropa</span>
+              <div class="kpi-icon">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              </div>
+            </div>
+            <div class="kpi-value" id="kpiStockTotal">288 unids</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-up">▲ En vivo</span>
+              <span style="color: var(--text-muted);">Sincronizado con BD</span>
+            </div>
+          </div>
+
+          <!-- KPI 2: Valor Total de Inventario -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Valor en Inventario ($)</span>
+              <div class="kpi-icon">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+            </div>
+            <div class="kpi-value" id="kpiValorInventario">$7,779.00</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-up">▲ Calculado</span>
+              <span style="color: var(--text-muted);">Precio x Stock en DB</span>
+            </div>
+          </div>
+
+          <!-- KPI 3: Modelos de Ropa Activos -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Modelos Registrados</span>
+              <div class="kpi-icon">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              </div>
+            </div>
+            <div class="kpi-value" id="kpiTotalModelos">6 Refs.</div>
+            <div class="kpi-footer">
+              <span style="color: var(--text-muted);">Catálogo activo</span>
+            </div>
+          </div>
+
+          <!-- KPI 4: Alertas de Stock Bajo -->
+          <div class="kpi-card" style="border-left-color: var(--color-warning);">
+            <div class="kpi-header">
+              <span class="kpi-title">Stock Bajo / Crítico</span>
+              <div class="kpi-icon" style="background: rgba(217, 119, 6, 0.1); color: var(--color-warning);">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              </div>
+            </div>
+            <div class="kpi-value" style="color: var(--color-warning);" id="kpiStockBajo">1 Ref.</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-down">▼ Requiere reposición</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tabla de Movimientos Recientes de Ropa -->
+        <div style="background: var(--bg-surface); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3>Últimos Movimientos de Entrada y Salida</h3>
+            <a href="crud.html" class="btn btn-secondary btn-sm">Ver Todo el Stock</a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Referencia</th>
+                  <th>Prenda</th>
+                  <th>Tipo Operación</th>
+                  <th>Cantidad</th>
+                  <th>Monto Total</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>BLS-091</code></td>
+                  <td><strong>Hoodie Oversize Heavyweight</strong></td>
+                  <td><span class="badge badge-brand">Salida (Venta)</span></td>
+                  <td>2 unids</td>
+                  <td>$70.00</td>
+                  <td><span class="badge badge-success">Completado</span></td>
+                </tr>
+                <tr>
+                  <td><code>BLS-044</code></td>
+                  <td><strong>Camiseta Gráfica Acid Wash</strong></td>
+                  <td><span class="badge" style="background: #e2e8f0; color: #334155;">Entrada (Proveedor)</span></td>
+                  <td>50 unids</td>
+                  <td>$500.00</td>
+                  <td><span class="badge badge-success">Recibido</span></td>
+                </tr>
+                <tr>
+                  <td><code>BLS-112</code></td>
+                  <td><strong>Pantalón Cargo Tactical Negro</strong></td>
+                  <td><span class="badge badge-brand">Salida (Venta)</span></td>
+                  <td>1 unid</td>
+                  <td>$45.00</td>
+                  <td><span class="badge badge-success">Completado</span></td>
+                </tr>
+                <tr>
+                  <td><code>BLS-008</code></td>
+                  <td><strong>Chaqueta Bomber Vintage Blessed</strong></td>
+                  <td><span class="badge badge-warning">Reserva Cliente</span></td>
+                  <td>1 unid</td>
+                  <td>$60.00</td>
+                  <td><span class="badge badge-warning">Pendiente Pago</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
